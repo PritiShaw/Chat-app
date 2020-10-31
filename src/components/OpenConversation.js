@@ -61,7 +61,7 @@ export default function OpenConversation() {
                   {message.fromMe ? 'You' : message.senderName}
                 </div>
                 <div className={`text-muted small ${message.fromMe ? 'text-right' : ''}`}>
-                  {new Date(message.time).toLocaleTimeString()}
+                  {/* new Date(message.time).toLocaleTimeString() */}
                 </div>
               </div>
             )
