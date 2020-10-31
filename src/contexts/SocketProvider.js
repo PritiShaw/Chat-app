@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import io from 'socket.io-client'
 
 const SocketContext = React.createContext()
-const server = process.env.SERVER_URL || 'http://localhost:5000'
+const server = process.env.REACT_APP_SERVER_URL || 'http://localhost:5000'
 
 export function useSocket() {
   return useContext(SocketContext)
