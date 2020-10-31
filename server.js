@@ -1,5 +1,5 @@
 const io = require('socket.io')(process.env.PORT || 5000)
-
+io.origins('*:*')
 io.on('connection', socket => {
   const id = socket.handshake.query.id
   socket.join(id)
