@@ -21,10 +21,10 @@ export function ConversationsProvider({ id, children }) {
     })
   }
 
-  const addMessageToConversation = useCallback(({ recipients, text, sender }) => {
+  const addMessageToConversation = useCallback(({ recipients, text, sender, time }) => {
     setConversations(prevConversations => {
       let madeChange = false
-      const newMessage = { sender, text }
+      const newMessage = { sender, text, time }
       const newConversations = prevConversations.map(conversation => {
         if (arrayEquality(conversation.recipients, recipients)) {
           madeChange = true
@@ -57,9 +57,10 @@ export function ConversationsProvider({ id, children }) {
   }, [socket, addMessageToConversation])
 
   function sendMessage(recipients, text) {
-    socket.emit('send-message', { recipients, text })
+    var time = new Date().toUTCString()
+    socket.emit('send-message', { recipients, text, time })
 
-    addMessageToConversation({ recipients, text, sender: id })
+    addMessageToConversation({ recipients, text, sender: id, time })
   }
 
   const formattedConversations = conversations.map((conversation, index) => {
