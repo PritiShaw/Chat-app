@@ -43,7 +43,7 @@ export default function OpenConversation() {
   return (
     <div className="d-flex flex-column flex-grow-1 border-left border-secondary">
       <div className="flex-grow-1 overflow-auto">
-        <div className="d-flex flex-column align-items-start justify-content-end px-3">
+        <div className="d-flex flex-column align-items-start justify-content-end px-5 pt-3 ">
           {selectedConversation.messages.map((message, index) => {
             const lastMessage = selectedConversation.messages.length - 1 === index
             return (
@@ -61,7 +61,7 @@ export default function OpenConversation() {
                   {message.fromMe ? 'You' : message.senderName}
                 </div>
                 <div className={`text-muted small ${message.fromMe ? 'text-right' : ''}`}>
-                  {new Date().toUTCString()}
+                  {new Date(message.time).toLocaleTimeString()}
                 </div>
               </div>
             )
