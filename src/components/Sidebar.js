@@ -12,16 +12,16 @@ export default function Sidebar({ id }) {
   const [activeKey, setActiveKey] = useState(CONVERSATIONS_KEY)
   const [modalOpen, setModalOpen] = useState(false)
   const conversationsOpen = activeKey === CONVERSATIONS_KEY
-  
+
   function closeModal() {
     setModalOpen(false)
   }
 
   return (
-    //<div style={{backgroundColor: "#ffffff",}}>ChatApp
-    <div style={{ width: '250px', backgroundColor: '#dadbd3'}} className="d-flex flex-column">
-      <div style= {{ fontSize: 'xxx-large', textAlignLast: 'center', borderBottom: 'solid 2px'}}>ChatApp
-      </div>
+    <div style={{ width: '250px'}} className="d-flex flex-column bg-light">
+      <nav className="navbar navbar-light bg-light mb-2">
+        <div className="navbar-items display-4" >ChatApp</div>
+      </nav>
       <Tab.Container activeKey={activeKey} onSelect={setActiveKey}>
         <Nav variant="tabs" className="justify-content-center">
           <Nav.Item>
@@ -39,9 +39,9 @@ export default function Sidebar({ id }) {
             <Contacts />
           </Tab.Pane>
         </Tab.Content>
-        {/* <div className="p-2 border-top border-right small">
-          Your Id: <span className="text-muted">{id}</span>
-        </div> */}
+        <div className="p-2 border-top border-right small bg-light">
+          Logged In as: <span className="text-muted">{id}</span>
+        </div>
         <Button onClick={() => setModalOpen(true)} className="btn-sm py-2 border-0 rounded-0 mb-2">
           New {conversationsOpen ? 'Conversation' : 'Contact'}
         </Button>

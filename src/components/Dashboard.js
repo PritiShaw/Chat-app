@@ -7,9 +7,11 @@ export default function Dashboard({ id }) {
   const { selectedConversation } = useConversations()
 
   return (
-    <div className="d-flex" style={{ height: '100vh', backgroundImage: 'url("https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png")', backgroundRepeat: "repeat" }}>
+    <div className="d-flex" style={{ height: '100vh'}}>
       <Sidebar id={id} />
-      {selectedConversation && <OpenConversation />}
+      {
+        selectedConversation?<OpenConversation />:<p className="lead w-75 mt-5 pt-5 text-center display-3">Start Your Chat</p>
+      }
     </div>
   )
 }
