@@ -43,7 +43,7 @@ export default function OpenConversation() {
   return (
     <div className="d-flex flex-column flex-grow-1 border-left border-secondary">
       <nav className="navbar navbar-light bg-light">  
-        <div className="navbar-brand active " ><em className="lead ml-2">{selectedConversation.recipients[0].id=="BROADCAST"?<b>Broadcasts</b>:selectedConversation.recipients.map(r=>r.name).join(" , ")}</em></div>
+        <div className="navbar-brand active " ><em className="lead ml-2"><b>{selectedConversation.recipients[0].id=="BROADCAST"?"📢 Broadcasts":selectedConversation.recipients.map(r=>r.name).join(" , ")}</b></em></div>
       </nav>
       <div className="flex-grow-1 overflow-auto">
         <div className="d-flex flex-column align-items-start justify-content-end px-5 pt-3 ">
