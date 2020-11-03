@@ -4,7 +4,6 @@ import { useConversations } from '../contexts/ConversationsProvider';
 
 export default function Conversations() {
   const { conversations, selectConversationIndex } = useConversations()
-  console.log(conversations)
   return (
     <ListGroup variant="flush">
       {conversations.filter((v,i,a)=>a.findIndex(t=>(t.recipients[0].id == v.recipients[0].id))===i).map((conversation, index) => (
