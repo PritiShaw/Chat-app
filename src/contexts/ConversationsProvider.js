@@ -10,6 +10,8 @@ export function useConversations() {
 }
 
 export function ConversationsProvider({ id, children }) {
+  const [sent_audio] = useState(new Audio("./noti/sent.mp3"));
+  const [receive_audio] = useState(new Audio("./noti/received.mp3"));
   const [conversations, setConversations] = useLocalStorage('conversations', [])
   const [selectedConversationIndex, setSelectedConversationIndex] = useState(0)
   const { contacts } = useContacts()
@@ -51,7 +53,7 @@ export function ConversationsProvider({ id, children }) {
   useEffect(() => {
     if (socket == null) return
 
-    socket.on('receive-message', addMessageToConversation)
+    socket.on('receive-message', (e) => {addMessageToConversation(e);receive_audio.play();})
 
     return () => socket.off('receive-message')
   }, [socket, addMessageToConversation])
@@ -59,8 +61,8 @@ export function ConversationsProvider({ id, children }) {
   function sendMessage(recipients, text) {
     var time = new Date().toUTCString()
     socket.emit('send-message', { recipients, text, time })
-
     addMessageToConversation({ recipients, text, sender: id, time })
+    sent_audio.play()
   }
 
   const formattedConversations = conversations.map((conversation, index) => {
