@@ -43,7 +43,8 @@ export default function NewConversationModal({ closeModal }) {
             </Form.Group>
           ))}
           {contacts.length>0 && <Button type="submit">Create</Button>}
-          <Button type="button" className="btn-secondary" onClick={()=>{createConversation(["BROADCAST"]);closeModal()}} >Broadcast</Button>
+          <Button type="button" className="btn-secondary float-right" onClick={()=>{createConversation(["BROADCAST"]);closeModal()}} >Broadcast</Button>
+          <div className="clearfix"/>
         </Form>
       </Modal.Body>
     </>
