@@ -32,7 +32,7 @@ export default function NewConversationModal({ closeModal }) {
       <Modal.Header closeButton>Create Conversation</Modal.Header>
       <Modal.Body>
         <Form onSubmit={handleSubmit}>
-          {contacts.map(contact => (
+          {contacts.length==0?<p>Add Contacts first to start conversation</p>:contacts.map(contact => (
             <Form.Group controlId={contact.id} key={contact.id}>
               <Form.Check
                 type="checkbox"
@@ -42,7 +42,8 @@ export default function NewConversationModal({ closeModal }) {
               />
             </Form.Group>
           ))}
-          <Button type="submit">Create</Button>
+          {contacts.length>0 && <Button type="submit">Create</Button>}
+          <Button type="button" className="btn-secondary" onClick={()=>{createConversation(["BROADCAST"]);closeModal()}} >Broadcast</Button>
         </Form>
       </Modal.Body>
     </>

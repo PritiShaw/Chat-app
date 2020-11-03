@@ -43,7 +43,7 @@ export default function OpenConversation() {
   return (
     <div className="d-flex flex-column flex-grow-1 border-left border-secondary">
       <nav className="navbar navbar-light bg-light">  
-        <div className="navbar-brand active " ><em className="lead"><img src={"https://www.gravatar.com/avatar/" + selectedConversation.recipients.map(r=>r.name).join(" , ") + "?d=identicon&r=PG"}  className="w-25 mr-2 border-dark border rounded-circle" />{selectedConversation.recipients.map(r=>r.name).join(" , ")}</em></div>
+        <div className="navbar-brand active " ><em className="lead ml-2">{selectedConversation.recipients[0].id=="BROADCAST"?<b>Broadcasts</b>:selectedConversation.recipients.map(r=>r.name).join(" , ")}</em></div>
       </nav>
       <div className="flex-grow-1 overflow-auto">
         <div className="d-flex flex-column align-items-start justify-content-end px-5 pt-3 ">
@@ -55,7 +55,7 @@ export default function OpenConversation() {
                 key={index}
                 className={`my-2 d-flex flex-column ${message.fromMe ? 'align-self-end align-items-end' : 'align-items-start'}`}
               >
-                <div className="text-muted small"><strong>{(selectedConversation.recipients.length > 1 && !message.fromMe) ? message.senderName : null}</strong></div>
+                <div className="text-muted small"><strong>{((selectedConversation.recipients.length > 1 || selectedConversation.recipients[0].id == "BROADCAST") && !message.fromMe) ? message.senderName : null}</strong></div>
                 <div
                   className={`rounded px-2 py-1 border text-white bg-${message.fromMe ? 'primary' : 'secondary'}`} style={{ display: (message.text.startsWith("data:image/") ? "contents" : null) }}>
                   {message.text.startsWith("data:image/") ? <div className="w-50"><img onClick={() => { setModalImg(message.text); setModalOpen(true) }} src={message.text} className="w-100 float-right" /></div> : message.text}
